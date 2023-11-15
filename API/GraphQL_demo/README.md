@@ -15,3 +15,15 @@ instead of doing : `node src/index.ts`
 
 in my package.json I can add the following : `"dev": "ts-node-dev src/index.ts"`
 and then I can use the command `npm run dev`, it will be the same as `node src/index.ts`
+
+## Railway
+
+Railway is an infrastructure platform where you can provision infrastructure, develop with that infrastructure locally, and then deploy to the cloud.
+
+After the creation of my PostgreSQL DB and migration `npx prisma migrate dev --name init`, i got :
+
+<img src="1.JPG"/>
+
+And after running `npx prisma db seed`:
+
+<img src="2.JPG"/>
