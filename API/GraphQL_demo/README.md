@@ -49,3 +49,13 @@ quand on parle de schéma en graphql, on parle à la fois des types objets, des 
 le schéma c'est un peu tout ce qu'on peut requêter / faire avec l'api
 
 <img src="4.JPG"/>
+
+
+
+## Something I wasn't aware of
+
+ In JavaScript and TypeScript, when a module (in this case, models/Message and models/User) is imported, the code within that module is executed. This behavior is particularly useful in scenarios like this, where the purpose of the import is to ensure that certain configurations or definitions (such as those within your model files) are executed and registered before further use - in this case, before generating the GraphQL schema with builder.toSchema({}).
+
+
+
+ <img src="5.JPG"/>
