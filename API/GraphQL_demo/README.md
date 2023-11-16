@@ -43,4 +43,9 @@ Manual Specification for Queries: While Pothos auto-generates types, you need to
 In essence, Pothos leverages your Prisma models to simplify the creation of GraphQL types, but the logic for how data is queried or mutated (the resolvers for queries and mutations) needs to be defined by you.
 
 
+The Prisma schema defines the shape of the data in the database, while the GraphQL schema defines the data available in the API.
 
+quand on parle de schéma en graphql, on parle à la fois des types objets, des types query et des types mutations
+le schéma c'est un peu tout ce qu'on peut requêter / faire avec l'api
+
+<img src="4.JPG"/>
