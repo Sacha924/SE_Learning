@@ -36,17 +36,37 @@ And after running `npx prisma db seed`:
 
 Prisma Models: Prisma is used to define your data models, like User and Message. These models are typically mapped to your database tables.
 
-Pothos and GraphQL Types: Pothos can automatically generate GraphQL types based on your Prisma models. So for models like User and Message, corresponding GraphQL types will be created.
+Pothos and GraphQL Types: Pothos can help to create GraphQL types based on your Prisma models. So for models like User and Message, corresponding GraphQL types will be created using Pothos.
+Example of Code :
 
-Manual Specification for Queries: While Pothos auto-generates types, you need to manually define the GraphQL queries (and mutations). These are the operations that allow clients to fetch (Query) or modify (Mutation) data. For instance, you would define a query to retrieve users in the GraphQL schema.
+```ts
+builder.prismaObject("User", {
+    fields: t => ({
+        id: t.exposeID("id"),
+        name: t.exposeString("name"),
+        messages: t.relation("messages")
+    })
+})
+```
+
+Manual Specification for Queries: you need to manually define the GraphQL queries (and mutations). These are the operations that allow clients to fetch (Query) or modify (Mutation) data. For instance, you would define a query to retrieve users in the GraphQL schema.
 
 In essence, Pothos leverages your Prisma models to simplify the creation of GraphQL types, but the logic for how data is queried or mutated (the resolvers for queries and mutations) needs to be defined by you.
 
 
 The Prisma schema defines the shape of the data in the database, while the GraphQL schema defines the data available in the API.
 
-quand on parle de schéma en graphql, on parle à la fois des types objets, des types query et des types mutations
-le schéma c'est un peu tout ce qu'on peut requêter / faire avec l'api
+Quand on parle de schéma en graphql, on parle à la fois des types objets, des types query et des types mutations
+Le schéma c'est un peu tout ce qu'on peut requêter / faire avec l'api
+
+
+Along the way, We:
+
+Set up a GraphQL server with GraphQL Yoga
+Set up the Pothos schema builder
+Defined your GraphQL object and query types
+Queried for data using Prisma Client
+
 
 <img src="4.JPG"/>
 
@@ -59,3 +79,29 @@ le schéma c'est un peu tout ce qu'on peut requêter / faire avec l'api
 
 
  <img src="5.JPG"/>
+
+
+
+## GraphQL Codegen
+
+Currently, Prisma generates a set of TypeScript types based off of our database schema. Pothos uses those types to help build GraphQL type definitions. The result of those two pieces is a GraphQL schema:
+
+ <img src="6.JPG"/>
+
+
+Our frontend project currently has a set of manually defined types.
+If a new field is introduced, updated, or removed form the API, our frontend application would have no idea a change occurred in the API and the type definitions in the two projects would become out of sync.
+
+GraphQL Codegen will generate TypeScript types and query helpers in your React project based off of our GraphQL schema and the queries we write in our frontend application.
+
+
+## Workflow
+
+Prisma will generate types based off of our database schema.
+Pothos will use those types to expose GraphQL types via an API.
+GraphQL Codegen will read your GraphQL schema and generate types for our frontend codebase representing what is available via the API and how to interact with it.
+
+
+## Link to the tutorial 
+
+https://www.prisma.io/blog/series/e2e-typesafety-graphql-react-yiw81oBkun
