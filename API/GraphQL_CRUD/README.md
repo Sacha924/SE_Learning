@@ -4,7 +4,8 @@ Goal : improve my knowledge of graphQL by creating a CRUD app for to-do tasks.
 Then learn how to use WebVitals and measure performance of the app.
 Then set up a caching system and analyze its efficiency.
 
-
+Gestion du cache : En REST, le cache fait partie de la spécification HTTP. Il est intégré nativement et trivial à implémenter. Contrairement à GraphQL, c’est une des conséquences de n’avoir qu’un point d’entrée. Cependant il existe des librairies pour l’implémenter, telles que FlacheQL ou encore Relay.
+https://blog.dcube.fr/index.php/2023/03/28/decouverte-de-graphql/
 
 ## Passing props
 
@@ -84,5 +85,15 @@ In JSX, when you directly include JavaScript expressions like booleans or null/u
 Even if you just need to clone the project and do npm install, I track the various commands that I used here.
 ```
 npx create-react-app . --template typescript
+// BACK
+npm install express express-graphql graphql --save
+npm i -D ts-node-dev typescript @types/node
+npx tsc --init
+npm i -D prisma
+npx prisma init
+npx prisma migrate dev --name init
+npx prisma db seed
+
 ```
 
+ <img src="6.JPG"/>
