@@ -27,6 +27,13 @@ concept explored :
 - GraphQL
 - Authentication (OAuth, JWT)
 
+### Caching 
+- Client Side
+- Server Side
+- CDN
+- Redis
+- Memcached
+
 ### Others
 - Git
 - Terminal Usage
