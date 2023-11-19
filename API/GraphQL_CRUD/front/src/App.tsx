@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <p> hello </p>
-      {results.data?.todos?.map((todo)=>{
-        return(<DisplayTodo todo={todo} />)
+      {results.data?.todos?.map((todo, key)=>{
+        return(<DisplayTodo todo={todo} key = {key}/>)
       })}
     </div>
   );

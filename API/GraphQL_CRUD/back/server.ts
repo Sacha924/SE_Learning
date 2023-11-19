@@ -18,8 +18,15 @@ var schema = buildSchema(`
   }
   type Query {
     todos: [Todo]
-    todo(id: ID!): Todo
   }
+  type Mutation {
+    createTodo (
+      title: String!,
+      content: String!
+    ): Todo
+    deleteTodo(id: ID!): Todo
+    markTodoDone(id: ID!): Boolean
+}
 `)
 
 
@@ -28,7 +35,6 @@ var root = {
   todos: async () => {
     // Fetch todos from the database using Prisma Client
     try {
-      console.log("here")
       const todos = await prisma.todo.findMany();
       return todos;
     } catch (error) {
@@ -36,6 +42,23 @@ var root = {
       throw new Error('Error fetching todos');
     }
   },
+
+  createTodo: async ({ title, content }) => {
+    try {
+      const todo = await prisma.todo.create({
+        data: {
+          title,
+          content,
+          done: false // Assuming new todos are not done by default
+        },
+      });
+      return todo;
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error creating todo');
+    }
+  }
+
 };
 
 var app = express()
