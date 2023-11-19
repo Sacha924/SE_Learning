@@ -94,6 +94,10 @@ npx prisma init
 npx prisma migrate dev --name init
 npx prisma db seed
 
+// FRONT
+npm i graphql
+npm i -D @graphql-codegen/cli @graphql-codegen/typed-document-node @graphql-codegen/typescript @graphql-codegen/typescript-operations
+npm run codegen
 ```
 
  <img src="6.JPG"/>

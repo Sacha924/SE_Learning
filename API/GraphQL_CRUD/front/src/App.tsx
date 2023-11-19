@@ -1,29 +1,18 @@
 import React from 'react';
 import { Todo } from './types';
 import DisplayTodo from './components/DisplayTodo';
+import { useQuery } from 'urql'
+import { GetTodosDocument } from './graphql/generated'
 
 function App() {
-  const Todos: Todo[] = [
-    {
-      title: "Learn React",
-      content: "Learn React",
-      done: false
-    },
-    {
-      title: "Learn GraphQL",
-      content: "Learn GraphQL",
-      done: false
-    },
-    {
-      title: "Pro leetcoder",
-      content: "Become a pro at leetcode",
-      done: true
-    }
-  ];
+  const [results] = useQuery({
+    query: GetTodosDocument
+  })
 
   return (
     <div className="App">
-      {Todos.map((todo)=>{
+      <p> hello </p>
+      {results.data?.todos?.map((todo)=>{
         return(<DisplayTodo todo={todo} />)
       })}
     </div>

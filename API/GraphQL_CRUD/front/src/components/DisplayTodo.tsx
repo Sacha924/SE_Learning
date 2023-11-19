@@ -7,6 +7,9 @@ type Props = {
 }
 
 export default function DisplayTodo({ todo }: Props) {
+    if (!todo) {
+        return null;
+    }
     return (
         <div className={`single-todo ${todo.done ? "done" : ""}`}>
             <h2> {todo.title}</h2>

@@ -1,5 +1,3 @@
-export type Todo = {
-    title : string,
-    content : string, 
-    done : boolean
-}
+import type { GetTodosQuery } from "./graphql/generated";
+
+export type Todo = NonNullable<GetTodosQuery["todos"]>[number];
