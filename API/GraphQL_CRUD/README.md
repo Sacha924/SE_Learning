@@ -76,6 +76,10 @@ Use Option 1 (spread attributes) when your component's props perfectly align wit
 Use Option 2 (named prop) when you need clarity and explicitness in what you're passing as props, or when the component expects to receive multiple objects as props.
 
 
+## URQL
+
+When i do a mutation, i saw directly my new value in the frontend. This is linked to Document Caching, see more : https://formidable.com/open-source/urql/docs/basics/document-caching/
+
 ## Others
 
 In JSX, when you directly include JavaScript expressions like booleans or null/undefined values, they do not render anything in the DOM. This is by design in React. use .toString()
