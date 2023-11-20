@@ -104,4 +104,4 @@ npm i -D @graphql-codegen/cli @graphql-codegen/typed-document-node @graphql-code
 npm run codegen
 ```
 
- <img src="6.JPG"/>
+ <img src="1.JPG"/>
