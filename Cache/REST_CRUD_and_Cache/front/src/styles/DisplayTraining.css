@@ -1,0 +1,14 @@
+.training-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.training-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
