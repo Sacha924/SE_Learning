@@ -10,7 +10,7 @@ type Props = {
 export default function DisplayTraining({ training }: Props) {
     return (
         <div className="training-container">
-            <p className="training-date">Done the {training.date.toLocaleDateString()}</p>
+            <p className="training-date">{training.name} done the {training.date.toLocaleDateString()}</p>
             {training.exercises.map((exercise, key) => {
                 return <DisplayExercise exercise={exercise} key={key} />
             })}

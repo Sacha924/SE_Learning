@@ -26,6 +26,7 @@ function App() {
   }
 
   const training_sb: Training = {
+    name:"sb",
     date: new Date('2023-11-18'),
     exercises: [
       benchP,
@@ -34,6 +35,7 @@ function App() {
   }
 
   const training_deadlift: Training = {
+    name: "deadliftTraining",
     date: new Date('2023-11-18'),
     exercises: [
       deadlifts

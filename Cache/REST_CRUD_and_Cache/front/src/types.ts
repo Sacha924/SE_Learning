@@ -6,6 +6,7 @@ export type Exercise = {
 }
 
 export type Training = {
+    name: string
     date: Date,
     exercises: Exercise[]
 }
