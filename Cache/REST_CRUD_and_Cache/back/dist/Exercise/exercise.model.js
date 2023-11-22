@@ -6,7 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const exerciseSchema = new mongoose_1.default.Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     sets: { type: Number, required: true },
     reps: { type: Number, required: true },
     weight: { type: Number, required: true }
