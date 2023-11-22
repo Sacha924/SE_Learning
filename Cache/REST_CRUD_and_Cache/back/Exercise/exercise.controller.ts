@@ -1,13 +1,13 @@
-const router = require("express").Router();
+const exerciseRouter = require("express").Router();
 const exerciseService = require("./exercise.service");
 
-router.get("/", exerciseService.getAllExercises);
+exerciseRouter.get("/", exerciseService.getAllExercises);
 
-router.post("/", exerciseService.createExercise);
+exerciseRouter.post("/", exerciseService.createExercise);
 
-router.put("/", exerciseService.updateExercise);
+exerciseRouter.put("/", exerciseService.updateExercise);
 
-router.delete("/", exerciseService.deleteExercise);
+exerciseRouter.delete("/", exerciseService.deleteExercise);
 
 
-module.exports = router;
+module.exports = exerciseRouter;

@@ -6,9 +6,8 @@ const exerciseSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   sets: { type: Number, required: true },
   reps: { type: Number, required: true },
-  weight: {type: Number, required: true}
+  weight: { type: Number, required: true }
 });
 
-const Exercise = mongoose.model("exercise", exerciseSchema); // so exercise is the name of my collection on the DB
-
+const Exercise = mongoose.model('Exercise', exerciseSchema);
 module.exports = Exercise;

@@ -11,5 +11,5 @@ const exerciseSchema = new mongoose_1.default.Schema({
     reps: { type: Number, required: true },
     weight: { type: Number, required: true }
 });
-const Exercise = mongoose_1.default.model("exercise", exerciseSchema); // so exercise is the name of my collection on the DB
+const Exercise = mongoose_1.default.model('Exercise', exerciseSchema);
 module.exports = Exercise;

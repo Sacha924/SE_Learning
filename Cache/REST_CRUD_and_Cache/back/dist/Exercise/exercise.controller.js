@@ -1,8 +1,8 @@
 "use strict";
-const router = require("express").Router();
+const exerciseRouter = require("express").Router();
 const exerciseService = require("./exercise.service");
-router.get("/", exerciseService.getAllExercises);
-router.post("/", exerciseService.createExercise);
-router.put("/", exerciseService.updateExercise);
-router.delete("/", exerciseService.deleteExercise);
-module.exports = router;
+exerciseRouter.get("/", exerciseService.getAllExercises);
+exerciseRouter.post("/", exerciseService.createExercise);
+exerciseRouter.put("/", exerciseService.updateExercise);
+exerciseRouter.delete("/", exerciseService.deleteExercise);
+module.exports = exerciseRouter;
