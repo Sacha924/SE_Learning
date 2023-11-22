@@ -31,6 +31,8 @@ Si je requête mes trainings, je vais avoir ça :
 Les exercices sont référencés par leurs ids dans chaque data training. 
 In Mongoose (the MongoDB object modeling tool for Node.js), populate is a method that you can use for automatically replacing the specified paths in the document with document(s) from other collections. In your case, where you have references (_ids) to Exercise documents in your Training documents, you can use populate to fetch the full Exercise documents associated with each Training session.
 
+Problème des N + 1 requêtes
+
 ## Others 
 
 Typer req et res :
