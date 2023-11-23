@@ -4,6 +4,8 @@ import { Exercise, Training } from './types';
 import "./styles/App.css"
 import { getTrainings } from './services/trainingService';
 import CreateExercise from './components/CreateExercise';
+import CreateTraining from './components/CreateTraining';
+
 
 function App() {
   const [trainings, setTrainings] = useState<Training[]>()
@@ -40,6 +42,7 @@ function App() {
       })}
 
       <CreateExercise/>
+      <CreateTraining/>
     </div>
   );
 }

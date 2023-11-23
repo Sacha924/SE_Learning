@@ -1,4 +1,7 @@
+import { Key } from "react"
+
 export type Exercise = {
+    _id: Key | null | undefined
     name: string,
     sets: number,
     reps: number,

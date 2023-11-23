@@ -8,7 +8,7 @@ export const getExercises = async () => {
   return response.json();
 };
 
-export const createExercises = async (exerciseData: any) => {
+export const createExercise = async (exerciseData: any) => {
   const response = await fetch(BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
