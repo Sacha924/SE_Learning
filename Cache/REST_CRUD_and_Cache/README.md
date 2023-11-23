@@ -45,7 +45,7 @@ import { Request, Response } from "express";
 
 
 
-## Partie découverte / optimisation
+## Front part
 
 A ce stade j'ai implémenté mon API qui me permet de faire les opérations CRUD sur des exercices, ainsi que de Créer et Retourner des trainings (contenant notamment plusieurs exercices). J'ai également requêté les données dans le front pour les afficher avec un UX de base.
 
@@ -211,3 +211,37 @@ useEffect(() => {
 ```
 
 On obtient un code vraiment clean. J'en ai profité our mettre un if else inline dans le seterror, et mettre le setIsLoading dans un finally parcequ'il était mis à la fois à la fin du try, et dans le catch.
+
+
+
+## Partie découverte / optimisation / Web vitals
+
+en moyenne 25ms pour la requête training, range entre 17 et 37 ms
+
+TTFB (Time To First Byte) : Il mesure le temps entre le début de la navigation jusqu'à la réception du premier octet de la réponse du serveur. Une valeur de 314,3 ms indique un bon temps de réponse pour le premier octet.
+
+
+Les Core Web Vitals sont un ensemble de mesures destinées à diagnostiquer le bon fonctionnement UX (User eXperience) d'un site internet. Elles évaluent la qualité de l'expérience utilisateur au travers de critères comme la rapidité de chargement, le délai d'interactivité ou la stabilité visuelle.
+
+Quels sont les 4 Core Web Vitals ?
+
+- LCP ou Largest Content Painful.
+
+- FID ou First Input Delay.
+
+- CLS ou Cumulative Layout Shift.
+
+- INP ou Interaction to Next Paint
+
+LCP estime la vitesse de chargement perçue, c'est-à-dire le temps qu'il faut à une page web pour afficher les premiers éléments visibles. Il ne mesure donc pas le temps de chargement complet de la page, seulement son délai pour être active.
+
+FID est un critère qui s'intéresse, quant à lui, au délai d'interactivité. Il mesure ainsi le temps qui passe entre le moment où un internaute interagit avec une page web et celui où le navigateur qu'il utilise répond à cette interaction.
+
+CLS est un indicateur mesurant la stabilité visuelle d'une page web. 
+
+INP sert à mesurer la vitesse à laquelle un site internet réagit aux interactions des utilisateurs. Il s'agit donc de mesurer le temps s'écoulant entre un clic ou une pression sur une touche du clavier, et un changement apparent sur l'interface du site. 
+
+TTFB : 310
+FCP : 394
+CLS : 0
+LCP : 431

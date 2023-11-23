@@ -1,7 +1,9 @@
 const BASE_URL = "http://localhost:4000/training";
 
 export const getTrainings = async () => {
-  const response = await fetch(BASE_URL);
+  const response = await fetch(BASE_URL, {
+    cache : "default"
+  });
   if (!response.ok) {
     throw new Error('Failed to fetch trainings');
   }
@@ -12,7 +14,7 @@ export const createTraining = async (trainingData: any) => {
   const response = await fetch(BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(trainingData)
+    body: JSON.stringify(trainingData),
   });
   if (!response.ok) {
     throw new Error('Failed to create training');
