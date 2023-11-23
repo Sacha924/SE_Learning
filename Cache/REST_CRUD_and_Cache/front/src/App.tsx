@@ -3,6 +3,7 @@ import DisplayTraining from './components/DisplayTraining';
 import { Exercise, Training } from './types';
 import "./styles/App.css"
 import { getTrainings } from './services/trainingService';
+import CreateExercise from './components/CreateExercise';
 
 function App() {
   const [trainings, setTrainings] = useState<Training[]>()
@@ -37,6 +38,8 @@ function App() {
       {trainings?.map((training, key) => {
         return <DisplayTraining training={training} key={key} />
       })}
+
+      <CreateExercise/>
     </div>
   );
 }
