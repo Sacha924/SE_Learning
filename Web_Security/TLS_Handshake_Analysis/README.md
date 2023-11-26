@@ -73,3 +73,78 @@ Les étapes de base d'une poignée de main TLS 1.3 sont les suivantes :
 4. Étapes finales et client « Fini »: le client vérifie la signature et le certificat, génère le secret maître et envoie le message « Fini ».
 
 5. Chiffrement symétrique sécurisé effectué
+
+
+
+## Application test
+
+j'ai créé une application réact ainsi qu'un server avec express.js 
+
+Création du SSL Certificate :
+
+1. First, generate a key file used for self-signed certificate generation with the command below. The command will create a private key as a file called key.pem.
+
+```
+openssl genrsa -out key.pem
+```
+
+2. Next, generate a certificate service request (CSR) with the command below. You’ll need a CSR to provide all of the input necessary to create the actual certificate.
+
+```
+openssl req -new -key key.pem -out csr.pem
+```
+
+3. Finally, generate your certificate by providing the private key created to sign it with the public key created in step two with an expiry date of 9,999 days. This command below will create a certificate called cert.pem.
+
+```
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+```
+
+
+quand je vais sur https://localhost:4000 je peux voir la réponse de mon serveur, même si je dois d'aborc accepter un message me disant que ma connection n'est pas sécurisé.
+
+Depuis mon application react par contre quand je fais un fetch, j'ai m'erreur net::ERR_CERT_AUTHORITY_INVALID indique que le navigateur ne fait pas confiance au certificat SSL utilisé par votre serveur, probablement parce qu'il est auto-signé. Dans un environnement de développement, c'est une situation courante. 
+
+je vais donc intéragir avec mon serveur/API directement depuis mon browser et non mon application react.
+
+Partie utilisation de Https done. Maintenant on va un peu analyser ce qu'il se passe.
+
+
+> openssl s_client -connect localhost:4000
+
+sans passer les options de certificat (en gros le https peut pas fonctionner car on a pas le certificat)
+<img src="1.JPG"/>
+
+avec certificat :
+
+<img src="2.JPG"/>
+
+
+On peut aussi utiliser wireshark.
+
+## Différence Wireshark / JA3
+
+
+Le fingerprint TLS, souvent réalisé via une bibliothèque comme JA3, est une méthode pour identifier de manière unique la configuration TLS d'un client. Cela inclut les détails sur la version TLS utilisée, les suites de chiffrement proposées, et d'autres extensions TLS spécifiques. L'analyse du fingerprint TLS et celle effectuée via Wireshark sont liées mais servent des objectifs légèrement différents.
+
+## Analyse avec Wireshark
+
+Objectif: Wireshark est utilisé pour capturer et analyser les paquets réseau, y compris le protocole TLS.
+
+Fonctionnalité: Il permet de visualiser chaque étape du handshake TLS, de voir les messages échangés, les certificats utilisés, les suites de chiffrement négociées, etc.
+
+Utilisation: C'est un outil puissant pour le débogage, l'analyse de performance, ou la compréhension détaillée des interactions réseau.
+
+
+## Fingerprint TLS avec JA3
+
+Objectif: JA3 crée un fingerprint (empreinte digitale) des paramètres TLS utilisés lors de la négociation TLS (handshake).
+
+Fonctionnalité: Cette empreinte est générée en prenant en compte des éléments comme la liste des suites de chiffrement, l'ordre dans lequel elles sont proposées, la version TLS, et d'autres extensions.
+
+Utilisation: Ce fingerprint est souvent utilisé à des fins de sécurité, comme la détection d'activités malveillantes, le tracking de clients spécifiques, ou la mise en œuvre de contrôles de sécurité basés sur les configurations TLS connues.
+
+
+## Lien entre les Deux
+
+Complémentarité: Alors que Wireshark vous donne une vue détaillée de ce qui se passe au niveau du protocole, JA3 vous fournit un moyen de résumer et d'identifier de manière unique la configuration TLS d'un client.
