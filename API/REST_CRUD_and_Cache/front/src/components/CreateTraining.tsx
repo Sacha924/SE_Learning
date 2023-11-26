@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Exercise } from '../types';
-import { createTraining } from "./../services/trainingService"
-import { getExercises } from "./../services/exerciseService"
+import { createTraining } from "../services/trainingService"
+import { getExercises } from "../services/exerciseService"
 
 export default function CreateTraining() {
     const [formData, setFormData] = useState<{

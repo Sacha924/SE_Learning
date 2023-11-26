@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { createExercise } from "./../services/exerciseService"
+import { createExercise } from "../services/exerciseService"
 
 export default function CreateExercise() {
     const [formData, setFormData] = useState({ name: '', sets: 0, reps: 0, weight: 0 });

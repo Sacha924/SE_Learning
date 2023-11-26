@@ -1,7 +1,7 @@
 import React from 'react'
 import { Training } from '../types'
 import DisplayExercise from './DisplayExercise'
-import "./../styles/DisplayTraining.css"
+import "../styles/DisplayTraining.css"
 
 type Props = {
     training: Training

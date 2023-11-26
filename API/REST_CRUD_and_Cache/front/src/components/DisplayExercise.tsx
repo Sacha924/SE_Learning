@@ -1,6 +1,6 @@
 import React from 'react'
 import { Exercise } from '../types'
-import "./../styles/DisplayExercise.css"
+import "../styles/DisplayExercise.css"
 
 type Props = {
     exercise: Exercise
