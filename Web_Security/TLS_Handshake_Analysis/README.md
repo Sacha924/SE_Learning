@@ -148,3 +148,37 @@ Utilisation: Ce fingerprint est souvent utilisé à des fins de sécurité, comm
 ## Lien entre les Deux
 
 Complémentarité: Alors que Wireshark vous donne une vue détaillée de ce qui se passe au niveau du protocole, JA3 vous fournit un moyen de résumer et d'identifier de manière unique la configuration TLS d'un client.
+
+
+https://nodejs.org/api/tls.html
+
+## https.createServer vs tls.createServer
+
+1. https.createServer
+
+Utilisation Principale: https.createServer est spécifiquement conçu pour créer un serveur HTTP sécurisé sur SSL/TLS. Il est principalement utilisé pour servir des pages web et gérer des requêtes HTTP/HTTPS.
+
+Simplicité: Il offre une interface simplifiée pour la mise en place d'un serveur HTTPS, en gérant les détails de bas niveau de la communication TLS/SSL.
+API HTTP: Il intègre étroitement avec l'API HTTP de Node.js, rendant la création d'un serveur web sécurisé relativement simple et directe.
+
+
+2. tls.createServer
+
+Utilisation Principale: tls.createServer est une interface de bas niveau pour créer un serveur TLS/SSL. Il peut être utilisé pour n'importe quel type de communication sécurisée basée sur TLS/SSL, pas seulement pour HTTP.
+
+Flexibilité: Il offre plus de flexibilité et de contrôle sur la manière dont la communication TLS/SSL est gérée. Vous pouvez l'utiliser pour des protocoles autres que HTTP.
+
+Complexité: La mise en place d'un serveur avec tls.createServer peut être plus complexe, car vous devez gérer vous-même plus de détails de bas niveau.
+
+
+3. Choix entre les deux
+
+Pour un Serveur Web: Si vous créez un serveur web classique pour servir des pages web sur HTTPS, https.createServer est généralement le choix le plus approprié.
+Pour Autres Protocoles: Si vous avez besoin de sécuriser un protocole autre que HTTP, ou si vous avez besoin de plus de contrôle sur la manière dont la communication TLS/SSL est gérée, tls.createServer serait plus approprié.
+
+En résumé, bien que les deux méthodes permettent de créer des serveurs sécurisés avec SSL/TLS, https.createServer est optimisé pour les applications web HTTPS, tandis que tls.createServer offre une approche plus flexible et de bas niveau, utile pour une plus grande variété de cas d'utilisation en dehors des serveurs web HTTP/HTTPS classiques.
+
+
+
+
+
