@@ -21,3 +21,10 @@ All implementations of the Singleton have these two steps in common:
 If your code has access to the Singleton class, then it’s able to call the Singleton’s static method. So whenever that method is called, the same object is always returned.
 
 <img src="1.JPG"/>
+
+
+## Applicability
+
+- **Use the Singleton pattern when a class in your program should have just a single instance available to all clients; for example, a single database object shared by different parts of the program.**
+
+- **Use the Singleton pattern when you need stricter control over global variables.**

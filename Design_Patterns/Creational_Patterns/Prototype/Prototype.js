@@ -5,7 +5,7 @@ var Person = /** @class */ (function () {
         this.hobby = hobby;
     }
     Person.prototype.getClone = function () {
-        return this;
+        return new Person(this.name, this.age, this.hobby);
     };
     return Person;
 }());
@@ -15,3 +15,4 @@ var jane = john.getClone();
 jane.name = 'jane doe';
 jane.hobby = 'swimming';
 console.log(jane);
+console.log(john);

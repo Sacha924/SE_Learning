@@ -14,7 +14,7 @@ class Person implements IPrototype {
 	}
 
 	public getClone(): InstanceType<typeof Person> {
-		return this
+		return new Person(this.name, this.age, this.hobby);
 	}
 }
 
@@ -26,4 +26,5 @@ jane.name = 'jane doe'
 jane.hobby = 'swimming'
 
 console.log(jane)
+console.log(john)
 

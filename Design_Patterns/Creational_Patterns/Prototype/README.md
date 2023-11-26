@@ -12,3 +12,10 @@ Wikipedia says
 In short, it allows you to create a copy of an existing object and modify it to your needs, instead of going through the trouble of creating an object from scratch and setting it up.
 
 An object that supports cloning is called a prototype. When your objects have dozens of fields and hundreds of possible configurations, cloning them might serve as an alternative to subclassing.
+
+
+## Applicability
+
+- **Use the Prototype pattern when your code shouldn’t depend on the concrete classes of objects that you need to copy.**
+
+- **Use the pattern when you want to reduce the number of subclasses that only differ in the way they initialize their respective objects.**
