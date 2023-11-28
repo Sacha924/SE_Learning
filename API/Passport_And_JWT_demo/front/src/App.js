@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function App() {
-  const [actionMessage, setActionMessage] = useState('Register');
+  const [actionMessage, setActionMessage] = useState('Login');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMess, setErrorMess] = useState()

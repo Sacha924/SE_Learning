@@ -18,16 +18,6 @@ const registerUser = async (req, res) => {
     }
 }
 
-const loginUser = async (req, res) => {
-    const { username, password } = req.body
-    const validUser = checkPassword(username, password)
-    if (!validUser) {
-        res.status(401).json({ msg: "Invalid username or password" });
-    }
-    else {
-        res.status(200).json({ msg: "Login successful" });
-    }
-}
 
 async function checkPassword(username, password) {
     const user = await userModel.findOne({ username });
@@ -40,5 +30,5 @@ async function checkPassword(username, password) {
 
 module.exports = {
     registerUser,
-    loginUser,
+    checkPassword,
 };
