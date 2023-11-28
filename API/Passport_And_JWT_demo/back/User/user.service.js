@@ -12,7 +12,6 @@ const registerUser = async (req, res) => {
             .create(user)
             .then((result) => res.status(200).json({ result }))
             .catch((error) => res.status(500).json({ msg: error }));
-        console.log("successfully registered")
     }
     catch (err) {
         console.log("error:", err)
@@ -20,9 +19,24 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
-
+    const { username, password } = req.body
+    const validUser = checkPassword(username, password)
+    if (!validUser) {
+        res.status(401).json({ msg: "Invalid username or password" });
+    }
+    else {
+        res.status(200).json({ msg: "Login successful" });
+    }
 }
 
+async function checkPassword(username, password) {
+    const user = await userModel.findOne({ username });
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+        return false;
+    }
+    return user;
+}
 
 module.exports = {
     registerUser,

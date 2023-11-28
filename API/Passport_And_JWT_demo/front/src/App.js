@@ -1,15 +1,17 @@
 import './App.css';
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [actionMessage, setActionMessage] = useState('Register');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMess, setErrorMess] = useState()
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = actionMessage === 'Register' ? await register() : await login();
-    console.log(response); // Handle response
+    actionMessage === 'Register' ? await register() : await login();
   }
 
   const register = async () => {
@@ -20,7 +22,10 @@ function App() {
       },
       body: JSON.stringify({ username, password }),
     });
-    return await response.json();
+    if (!response.ok) {
+      setErrorMess("Network response was not OK :", response);
+    }
+    else console.log("successfully register")
   }
 
   const login = async () => {
@@ -31,7 +36,12 @@ function App() {
       },
       body: JSON.stringify({ username, password }),
     });
-    return await response.json();
+    if (!response.ok) {
+      setErrorMess("Network response was not OK :", response);
+    }
+    else {
+      navigate('/main')
+    }
   }
 
   const toggleAction = () => {
@@ -54,6 +64,12 @@ function App() {
         </label>
         <input type="submit" value={actionMessage} />
       </form>
+      {errorMess && (
+        <div>
+          <h3>ERROR</h3>
+          <p>{errorMess}</p>
+        </div>
+      )}
     </div>
   );
 }
