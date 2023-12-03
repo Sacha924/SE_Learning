@@ -7,7 +7,6 @@ require("../auth/local.strategy");
 router.post("/register", userService.registerUser);
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-    console.log(req.body)
     if (req.user) {
         res.json({ success: true, user: req.user });
     } else {
