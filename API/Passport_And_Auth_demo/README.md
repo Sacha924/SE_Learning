@@ -27,3 +27,19 @@ app.use(session({
 
 To maintain a login session, Passport serializes and deserializes user information to and from the session. The information that is stored is determined by the application, which supplies a serializeUser and a deserializeUser function.
 
+
+## Auth with Facebook
+
+
+
+
+
+
+
+
+
+
+
+## Other
+
+<img src="1.JPG"/>

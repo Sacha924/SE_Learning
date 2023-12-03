@@ -64,6 +64,9 @@ function App() {
         </label>
         <input type="submit" value={actionMessage} />
       </form>
+
+      <a href="http://localhost:4000/user/login/facebook">Log In With Facebook</a>
+
       {errorMess && (
         <div>
           <h3>ERROR</h3>
