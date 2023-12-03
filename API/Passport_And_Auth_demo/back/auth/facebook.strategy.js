@@ -5,31 +5,27 @@ const userModel = require("./../User/user.model");
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: 'http://localhost:4000/user/login/facebook/callback'
-
+    callbackURL: 'http://localhost:4000/user/login/facebook/callback',
+    profileFields: ['id', 'displayName', 'name', 'email']
 },
     async function (accessToken, refreshToken, profile, cb) {
-        // try {
-        //     const user = await findOrCreateUser(profile);
-        //     cb(null, user);
-        // } catch (err) {
-        //     cb(err);
-        // }
-        return cb(null, profile)
+        try {
+            let user = await userModel.findOne({ facebookId: profile.id });
+
+            if (!user) {
+                // User not found, create a new user
+                user = new userModel({
+                    facebookId: profile.id,
+                    username: profile.displayName,
+                });
+
+                await user.save();
+            }
+
+            return cb(null, user);
+        } catch (err) {
+            return cb(err);
+        }
     }
 ));
 
-async function findOrCreateUser(profile) {
-    try {
-        const user = await userModel.findOneAndUpdate(
-            { facebookId: profile.id },
-            { $setOnInsert: { facebookId: profile.id } },
-            { upsert: true, new: true, setDefaultsOnInsert: true }
-        );
-        return user;
-    } catch (err) {
-        // Gérer l'erreur
-        console.error(err);
-        throw err;
-    }
-}
