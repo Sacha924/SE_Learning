@@ -3,156 +3,115 @@
  * defines a method for saving the state inside a memento and another method for
  * restoring the state from it.
  */
-class Originator {
-    /**
-     * For the sake of simplicity, the originator's state is stored inside a
-     * single variable.
-     */
-    private state: string;
-
-    constructor(state: string) {
+var Originator = /** @class */ (function () {
+    function Originator(state) {
         this.state = state;
-        console.log(`Originator: My initial state is: ${state}`);
+        console.log("Originator: My initial state is: ".concat(state));
     }
-
     /**
      * The Originator's business logic may affect its internal state. Therefore,
      * the client should backup the state before launching methods of the
      * business logic via the save() method.
      */
-    public doSomething(): void {
+    Originator.prototype.doSomething = function () {
         console.log('Originator: I\'m doing something important.');
         this.state = this.generateRandomString(30);
-        console.log(`Originator: and my state has changed to: ${this.state}`);
-    }
-
-    private generateRandomString(length: number = 10): string {
-        const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+        console.log("Originator: and my state has changed to: ".concat(this.state));
+    };
+    Originator.prototype.generateRandomString = function (length) {
+        if (length === void 0) { length = 10; }
+        var charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         return Array
-            .apply(null, { length })
-            .map(() => charSet.charAt(Math.floor(Math.random() * charSet.length)))
+            .apply(null, { length: length })
+            .map(function () { return charSet.charAt(Math.floor(Math.random() * charSet.length)); })
             .join('');
-    }
-
+    };
     /**
      * Saves the current state inside a memento.
      */
-    public save(): Memento {
+    Originator.prototype.save = function () {
         return new ConcreteMemento(this.state);
-    }
-
+    };
     /**
      * Restores the Originator's state from a memento object.
      */
-    public restore(memento: Memento): void {
+    Originator.prototype.restore = function (memento) {
         this.state = memento.getState();
-        console.log(`Originator: My state has changed to: ${this.state}`);
-    }
-}
-
-/**
- * The Memento interface provides a way to retrieve the memento's metadata, such
- * as creation date or name. However, it doesn't expose the Originator's state.
- */
-interface Memento {
-    getState(): string;
-
-    getName(): string;
-
-    getDate(): string;
-}
-
+        console.log("Originator: My state has changed to: ".concat(this.state));
+    };
+    return Originator;
+}());
 /**
  * The Concrete Memento contains the infrastructure for storing the Originator's
  * state.
  */
-class ConcreteMemento implements Memento {
-    private state: string;
-
-    private date: string;
-
-    constructor(state: string) {
+var ConcreteMemento = /** @class */ (function () {
+    function ConcreteMemento(state) {
         this.state = state;
         this.date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     }
-
     /**
      * The Originator uses this method when restoring its state.
      */
-    public getState(): string {
+    ConcreteMemento.prototype.getState = function () {
         return this.state;
-    }
-
+    };
     /**
      * The rest of the methods are used by the Caretaker to display metadata.
      */
-    public getName(): string {
-        return `${this.date} / (${this.state.substr(0, 9)}...)`;
-    }
-
-    public getDate(): string {
+    ConcreteMemento.prototype.getName = function () {
+        return "".concat(this.date, " / (").concat(this.state.substr(0, 9), "...)");
+    };
+    ConcreteMemento.prototype.getDate = function () {
         return this.date;
-    }
-}
-
+    };
+    return ConcreteMemento;
+}());
 /**
  * The Caretaker doesn't depend on the Concrete Memento class. Therefore, it
  * doesn't have access to the originator's state, stored inside the memento. It
  * works with all mementos via the base Memento interface.
  */
-class Caretaker {
-    private mementos: Memento[] = [];
-
-    private originator: Originator;
-
-    constructor(originator: Originator) {
+var Caretaker = /** @class */ (function () {
+    function Caretaker(originator) {
+        this.mementos = [];
         this.originator = originator;
     }
-
-    public backup(): void {
+    Caretaker.prototype.backup = function () {
         console.log('\nCaretaker: Saving Originator\'s state...');
         this.mementos.push(this.originator.save());
-    }
-
-    public undo(): void {
+    };
+    Caretaker.prototype.undo = function () {
         if (!this.mementos.length) {
             return;
         }
-        const memento = this.mementos.pop();
-
-        console.log(`Caretaker: Restoring state to: ${memento?.getName()}`);
-        this.originator.restore(memento || new ConcreteMemento(""));   // Just to remove the error : "L'argument de type 'Memento | undefined' n'est pas attribuable au paramètre de type 'Memento'"
-    }
-
-    public showHistory(): void {
+        var memento = this.mementos.pop();
+        console.log("Caretaker: Restoring state to: ".concat(memento === null || memento === void 0 ? void 0 : memento.getName()));
+        this.originator.restore(memento || new ConcreteMemento("")); // Just to remove the error : "L'argument de type 'Memento | undefined' n'est pas attribuable au paramètre de type 'Memento'"
+    };
+    Caretaker.prototype.showHistory = function () {
         console.log('Caretaker: Here\'s the list of mementos:');
-        for (const memento of this.mementos) {
+        for (var _i = 0, _a = this.mementos; _i < _a.length; _i++) {
+            var memento = _a[_i];
             console.log(memento.getName());
         }
-    }
-}
-
+    };
+    return Caretaker;
+}());
 /**
  * Client code.
  */
-const originator = new Originator('Super-duper-super-puper-super.');
-const caretaker = new Caretaker(originator);
-
+var originator = new Originator('Super-duper-super-puper-super.');
+var caretaker = new Caretaker(originator);
 caretaker.backup();
 originator.doSomething();
-
 caretaker.backup();
 originator.doSomething();
-
 caretaker.backup();
 originator.doSomething();
-
 console.log('');
 caretaker.showHistory();
-
 console.log('\nClient: Now, let\'s rollback!\n');
 caretaker.undo();
-
 console.log('\nClient: Once more!\n');
 caretaker.undo();
