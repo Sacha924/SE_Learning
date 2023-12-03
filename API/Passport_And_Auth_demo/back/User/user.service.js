@@ -29,13 +29,13 @@ async function checkPassword(username, password) {
     return user;
 }
 
-async function createJWT(req, res) {
+function createJWT(req, res) {
     try {
         const payload = {
             sub: req.user._id,
         };
         let token = jwt.sign(payload, process.env.JWT_SECRET);
-        res.status(200).json({ token });
+        return token 
     }
     catch (err) {
         res.status(401).json({ success: false, message: 'Échec de la création du JWT' });

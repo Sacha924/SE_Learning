@@ -36,6 +36,7 @@ function App() {
       },
       body: JSON.stringify({ username, password }),
     });
+    console.log(await response.json())
     if (!response.ok) {
       setErrorMess("Network response was not OK :", response);
     }
