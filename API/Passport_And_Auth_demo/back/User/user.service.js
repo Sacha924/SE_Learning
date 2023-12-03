@@ -1,5 +1,6 @@
 const userModel = require("./user.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
     try {
@@ -28,7 +29,21 @@ async function checkPassword(username, password) {
     return user;
 }
 
+async function createJWT(req, res) {
+    try {
+        const payload = {
+            sub: req.user._id,
+        };
+        let token = jwt.sign(payload, process.env.JWT_SECRET);
+        res.status(200).json({ token });
+    }
+    catch (err) {
+        res.status(401).json({ success: false, message: 'Échec de la création du JWT' });
+    }
+}
+
 module.exports = {
     registerUser,
     checkPassword,
+    createJWT
 };
