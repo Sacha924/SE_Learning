@@ -25,7 +25,7 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - JSON API
 - gRPC
 - GraphQL ✔️
-- Authentication (OAuth, JWT)
+- Authentication (OAuth, JWT) ✔️
 
 ### Caching 
 - Client Side ✔️
