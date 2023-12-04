@@ -1,7 +1,13 @@
 const Main = () => {
-    const callProtectedRoot = async()=>{
-        
-    } 
+    const callProtectedRoot = async () => {
+        const res = await fetch('http://localhost:4000/user/protected', {
+            method: 'GET',
+            credentials: 'include', // Important: include credentials for cookies
+        });
+        const jsonres = await res.json();
+        console.log(jsonres);
+    }
+    
     
     return (
         <div>

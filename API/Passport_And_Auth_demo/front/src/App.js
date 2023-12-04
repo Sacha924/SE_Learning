@@ -31,6 +31,7 @@ function App() {
   const login = async () => {
     const response = await fetch('http://localhost:4000/user/login', {
       method: 'POST',
+      credentials: 'include', // Important: include credentials for cookies
       headers: {
         'Content-Type': 'application/json',
       },

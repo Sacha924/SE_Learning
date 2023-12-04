@@ -1,3 +1,10 @@
+## Summary of the project
+
+In this project, we have :
+- technical stack: React on the front, NodeJS with Express and Passport, MongoDB atlas and mongoose
+- a login system of your choice: either via username / password or with facebook (I could have implemented google too, or twitter, but it's similar, you just need to see the passport doc)
+- a JWT generation passed into the application not via the bearer token but via the httpOnly cookie
+
 ## Passport
 
 Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
@@ -28,7 +35,10 @@ app.use(session({
 To maintain a login session, Passport serializes and deserializes user information to and from the session. The information that is stored is determined by the application, which supplies a serializeUser and a deserializeUser function.
 
 
+## JWT
 
+In the frontend :
+- To keep them secure, you should always store JWTs inside an httpOnly cookie. This is a special kind of cookie that's  only sent in HTTP requests to the server. It's never accessible (both for reading or writing) from JavaScript running in the browser
 
 
 
