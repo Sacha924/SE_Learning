@@ -1,7 +1,7 @@
 # Software Engineer Knowledge
 
 I'm learning different concepts to develop my skills as a software engineer.
-Some concepts are theoretical knowledge (like how OSes work in general), and others require code to better understand. 
+Some concepts are theoretical knowledge (like "how OS work in general"), and others require code to better understand. 
 So this github repository will serve me well as a central place for storing and showcasing the code I write as I explore various concepts in software engineering.
 
 concept explored : (emoji ✔️ if there is a corresponding project) 
@@ -39,10 +39,24 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - Creational Pattern ✔️
 - Structural Pattern ✔️
 
+### Architectural Pattern
+- Monolithic Apps
+- Microservices
+- SOA
+- Serverless
+- Service Mesh
+- Twelve-Factor Apps
+
+
 ### Web Security
 - Hashing Algorithm (SHA256, bcrypt, scrypt) ✔️
 - CORS ✔️
 - SSL/TLS ✔️
+
+### Testing 
+- Integration Testing
+- Unit Testing
+- Functional Testing
 
 ### Others
 - Git
