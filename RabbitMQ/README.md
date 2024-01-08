@@ -32,3 +32,5 @@ RabbitMQ is a powerful message broker that handles the exchange of messages betw
 
 
 https://www.rabbitmq.com/tutorials/tutorial-one-python.html
+
+install RabitMQ with : docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management
