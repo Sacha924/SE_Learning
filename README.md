@@ -62,3 +62,5 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - Git
 - Terminal Usage
 - Operating Systems
+- Message Brokers (RabbitMQ, Kafka) ✔️
+- Search Engines (Elasticsearch, Solr) ✔️
