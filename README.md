@@ -53,6 +53,16 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - CORS ✔️
 - SSL/TLS ✔️
 
+### Web Servers
+- Nginx
+- Apache
+
+### Real Time Data
+- Websockets
+- Server Sent Events
+- Long Polling
+- Short Polling
+
 ### Testing 
 - Integration Testing
 - Unit Testing
