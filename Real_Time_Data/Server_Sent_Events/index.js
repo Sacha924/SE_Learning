@@ -1,39 +1,52 @@
 const http = require('http');
+const cors = require('cors');
+
+const corsOptions = {
+  origin: '*',
+  methods: ['GET'],
+};
 
 const server = http.createServer((req, res) => {
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('Connection', 'keep-alive');
+  cors(corsOptions)(req, res, () => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Connection', 'keep-alive');
 
-  let counter = getRandomNumber(1, 10);
 
-  const interval = setInterval(() => {
-    // Every second, send a "ping" event.
-    const curDate = new Date().toISOString();
-    res.write('event: ping\n');
-    res.write(`data: {"time": "${curDate}"}`);
-    res.write('\n\n');
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Connection', 'keep-alive');
 
-    // Send a simple message at random intervals.
-    counter--;
+    let counter = getRandomNumber(1, 10);
 
-    if (counter === 0) {
-      res.write(`data: This is a message at time ${curDate}\n\n`);
-      counter = getRandomNumber(1, 10);
-    }
+    const interval = setInterval(() => {
+      // Every second, send a "ping" event.
+      const curDate = new Date().toISOString();
+      res.write('event: ping\n');
+      res.write(`data: {"time": "${curDate}"}`);
+      res.write('\n\n');
 
-    // Break the loop if the client aborted the connection (closed the page)
-    if (res.socket.destroyed) {
+      // Send a simple message at random intervals.
+      counter--;
+
+      if (counter === 0) {
+        res.write(`data: This is a message at time ${curDate}\n\n`);
+        counter = getRandomNumber(1, 10);
+      }
+
+      // Break the loop if the client aborted the connection (closed the page)
+      if (res.socket.destroyed) {
+        clearInterval(interval);
+        res.end();
+      }
+    }, 1000);
+
+    req.on('close', () => {
       clearInterval(interval);
       res.end();
-    }
-  }, 1000);
-
-  req.on('close', () => {
-    clearInterval(interval);
-    res.end();
+    });
   });
-});
+})
 
 server.listen(3000, () => {
   console.log('SSE server is running on port 3000');
