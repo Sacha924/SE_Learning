@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat App</title>
+<style>
+  #messages {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+  }
+  input, button {
+    padding: 10px;
+    margin: 5px;
+  }
+</style>
+</head>
+<body>
+  <div id="messages"></div>
+  <input type="text" id="yourName" placeholder="Enter your name..." />
+  <input type="text" id="messageBox" placeholder="Type a message..." />
+  <button id="sendBtn">Send</button>
+
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+    const name = document.getElementById('yourName')
+    const messages = document.getElementById('messages');
+    const messageBox = document.getElementById('messageBox');
+    const sendBtn = document.getElementById('sendBtn');
+
+    ws.onmessage = async function(event) {
+        const message = typeof event.data === 'string' ? event.data : await event.data.text();
+
+
+      messages.innerHTML += `<div>${message}</div>`;
+    };
+
+    sendBtn.onclick = function() {
+      if (messageBox.value.trim() !== '' && name.value.trim() !== '') {
+        ws.send(name.value + ": " + messageBox.value);
+        messageBox.value = '';
+      }
+    };
+
+    // Also send a message when the user hits the "Enter" key.
+    messageBox.onkeypress = function(event) {
+      if (event.keyCode === 13) { // "Enter" key
+        sendBtn.click();
+      }
+    };
+  </script>
+</body>
+</html>
