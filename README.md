@@ -58,8 +58,8 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - Apache
 
 ### Real Time Data
-- Websockets
-- Server Sent Events
+- Websockets ✔️
+- Server Sent Events ✔️
 - Long Polling
 - Short Polling
 
@@ -74,3 +74,4 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - Operating Systems
 - Message Brokers (RabbitMQ, Kafka) ✔️
 - Search Engines (Elasticsearch, Solr) ✔️
+- Building for Scale (Mitigation Strategies, Instrumentation, Monitoring, Tememetry, Observability)
