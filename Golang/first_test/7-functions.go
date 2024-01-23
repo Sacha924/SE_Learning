@@ -82,4 +82,12 @@ func main(){
         return fib(n-1) + fib(n-2)
     }
     fmt.Println(fib(7))
+
+
+	// anonymous function
+	x := 1
+	y := 2
+	func(a, b int) {
+		println("a*a + b*b =", a*a + b*b)
+	}(x, y) // pass argument x and y to parameter a and b.
 }
