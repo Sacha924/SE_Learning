@@ -6,6 +6,12 @@ So this github repository will serve me well as a central place for storing and 
 
 concept explored : (emoji ✔️ if there is a corresponding project) 
 
+### Language
+- ts ✔️
+- js ✔️
+- Go ✔️
+- Python ✔️
+
 ### Internet
 - Http/Https ✔️
 - Browsers
@@ -75,3 +81,4 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - Message Brokers (RabbitMQ, Kafka) ✔️
 - Search Engines (Elasticsearch, Solr) ✔️
 - Building for Scale (Mitigation Strategies, Instrumentation, Monitoring, Tememetry, Observability)
+
