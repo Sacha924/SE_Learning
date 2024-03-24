@@ -1,0 +1,6 @@
+Yellowknife;16.0
+Entebbe;32.9
+Porto;24.4
+Yellowknife;26.0
+Entebbe;12.1
+Porto;24.6
