@@ -101,3 +101,17 @@ func main() {
     val := <-returnChan
     fmt.Println(val)
 }
+
+func main() {
+    fmt.Println("a")
+
+    canal := make(chan int)
+    returnChan := make(chan int)
+
+    go send(canal, 42)
+    go read(canal, returnChan)
+
+    val := <-returnChan
+    fmt.Println(val)
+}
+
