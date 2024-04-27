@@ -74,6 +74,15 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - Unit Testing
 - Functional Testing
 
+### Security 
+- SQLI
+- XSS 
+- CSRF
+- ClickJacking
+- Path Traversal
+- Access Control
+- Authentication
+
 ### Others
 - Git
 - Terminal Usage

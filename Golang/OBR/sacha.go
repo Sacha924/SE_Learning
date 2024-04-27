@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime/pprof"
 	"sort"
 	"strconv"
 	"strings"
@@ -134,6 +135,56 @@ func run5()  { // SLOWER
 		}
 	}
 }
+func run6()  {
+	file, err := os.Open("measurements.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	BUFFER_SIZE := 4096*4096	
+	buffer := make([]byte, BUFFER_SIZE)
+	for {
+		_, err := file.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+func analyzeRun6()  {
+	f, err := os.Create("cpu_profile.prof")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	if err := pprof.StartCPUProfile(f); err != nil {
+		panic(err)
+	}
+	defer pprof.StopCPUProfile()
+	file, err := os.Open("measurements.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	BUFFER_SIZE := 4096*4096	
+	buffer := make([]byte, BUFFER_SIZE)
+	for {
+		_, err := file.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
 
 func main() {
 	started := time.Now()
@@ -141,6 +192,8 @@ func main() {
 	// run2()
 	// run3()
 	// run4()
-	run5()
+	// run5()
+	// run6()
+	analyzeRun6()
 	fmt.Printf("%0.6f\n", time.Since(started).Seconds())
 }

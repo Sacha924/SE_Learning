@@ -52,3 +52,25 @@ Setting a larger buffer size can potentially improve the performance of reading 
 - **Less Overhead**: Larger buffers can reduce the overhead associated with managing the buffer itself.
 
 - **Optimized Disk Access**: File systems often perform better when reading larger contiguous chunks of data rather than smaller scattered reads. 
+
+
+
+
+```go
+BUFFER_SIZE := 4096*4096	
+	buffer := make([]byte, BUFFER_SIZE)
+	for {
+		_, err := file.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			panic(err)
+		}
+	}
+```
+
+15.101426s
+
+after checking how Scanner.Scan works internally I noticed that it does a lot of things that I don’t need. It manipulates the buffer object a lot
+So we ca, creates our own  buffer and manage it ourselves to get more control over how much data is read at once and what happened to the data
