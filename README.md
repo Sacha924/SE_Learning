@@ -11,6 +11,7 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 - js ✔️
 - Go ✔️
 - Python ✔️
+- Java✔️
 
 ### Internet
 - Http/Https ✔️
@@ -29,7 +30,7 @@ concept explored : (emoji ✔️ if there is a corresponding project)
 ### API
 - REST ✔️
 - JSON API
-- gRPC
+- gRPC✔️
 - GraphQL ✔️
 - Authentication (OAuth, JWT) ✔️
 
