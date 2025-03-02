@@ -1,16 +1,16 @@
 package main
 
-import "fmt"
+// import "fmt"
 
-func main(){
-    val := [][]int{
-        {0, 1, 1, 1},
-        {1, 1, 1, 1},
-        {0, 1, 1, 1},
-    }
+// func main(){
+//     val := [][]int{
+//         {0, 1, 1, 1},
+//         {1, 1, 1, 1},
+//         {0, 1, 1, 1},
+//     }
 
-    fmt.Println(countSquares(val))
-}
+//     fmt.Println(countSquares(val))
+// }
 
 func countSquares(matrix [][]int) int {
     rows := len(matrix)
