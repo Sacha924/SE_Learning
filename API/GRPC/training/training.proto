@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package training;
+
+option go_package = ".";
+
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+
+// run   protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative API/GRPC/training/training.proto
+// really simple implementation just to test
+// there is no notion of weights, rep, ...
+
+message Exercise {
+  string name = 1;
+  string targeted_muscle = 2;
+}
+
+message Training {
+  string name = 1;
+  google.protobuf.Timestamp creation_date = 2;
+  repeated Exercise exercises = 3;
+}
+
+message Trainings{
+  repeated Training trainings= 1;
+}
+
+service TrainingService {
+  rpc GetTraining(google.protobuf.StringValue) returns (Training) {}
+  rpc GetTrainings(google.protobuf.Empty) returns (Trainings) {}
+  rpc AddTraining(Training) returns (google.protobuf.Empty){}
+}
+
